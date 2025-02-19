@@ -81,10 +81,10 @@ export default function GestionalePost() {
         setPosts(nuoviPosts)
     }
 
-
+    // Render the component
     return (
         <>
-
+            {/* Titolo principale della pagina */}
             <h1>Lista dei Posts</h1>
             {posts.length === 0 ? <p>Non ci sono posts</p> :
                 <div>
