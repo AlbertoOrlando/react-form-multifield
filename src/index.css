@@ -116,24 +116,28 @@ h3 {
 #form_categoria {
     color: gray;
     font-size: 15px;
+    padding: 5px;
 }
 
 #form_autore {
     color: gray;
     font-size: 15px;
     text-align: center;
+    padding: 5px;
 }
 
 #form_titolo {
     font-size: 30px;
     margin: 5px 0px;
     text-align: center;
+    padding: 5px;
 }
 
 #form_contenuto {
     font-size: 20px;
     margin: 5px 0;
     height: 100px;
+    padding: 5px;
 }
 
 #form_available {
