@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import "@fontsource/roboto";
 
 // dati iniziali
 const articoli = [
@@ -9,7 +10,7 @@ const articoli = [
         id: 1,
         titolo: "Il mio primo articolo",
         autore: "Mario Rossi",
-        contenuto: "Questo è il contenuto del mio primo articolo.",
+        contenuto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla officia non totam inventore itaque illo tempore repellendus. Tempore incidunt architecto consectetur ducimus. Esse ipsam voluptatum autem aut adipisci nam saepe.",
         categoria: "Scienza",
         available: true
     },
@@ -17,7 +18,7 @@ const articoli = [
         id: 2,
         titolo: "Un articolo interessante",
         autore: "Luisa Verdi",
-        contenuto: "Questo articolo parla di un argomento interessante.",
+        contenuto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla officia non totam inventore itaque illo tempore repellendus. Tempore incidunt architecto consectetur ducimus. Esse ipsam voluptatum autem aut adipisci nam saepe.",
         categoria: "Storia",
         available: true
     },
@@ -25,7 +26,7 @@ const articoli = [
         id: 3,
         titolo: "Un articolo divertente",
         autore: "Giuseppe Gialli",
-        contenuto: "Questo articolo è stato scritto per divertire il lettore.",
+        contenuto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla officia non totam inventore itaque illo tempore repellendus. Tempore incidunt architecto consectetur ducimus. Esse ipsam voluptatum autem aut adipisci nam saepe.",
         categoria: "Umorismo",
         available: true
     }
@@ -87,58 +88,66 @@ export default function GestionalePost() {
             {/* Titolo principale della pagina */}
             <h1>Lista dei Posts</h1>
             {posts.length === 0 ? <p>Non ci sono posts</p> :
-                <div>
+                <div className="posts_container">
                     {posts.map((post) => (
-                        <div key={post.id}>
-                            <span>{post.categoria}</span>
-                            <h2>{post.titolo}</h2>
-                            <span>{post.autore}</span>
-                            <p>{post.contenuto}</p>
-                            <span><FontAwesomeIcon icon={faTrashCan} onClick={() => rimuoviPost(post.id)
+                        <div className="post" key={post.id}>
+                            <span id="categoria">{post.categoria}</span>
+                            <h2 id="titolo">{post.titolo}</h2>
+                            <span id="autore">{post.autore}</span>
+                            <p id="contenuto">{post.contenuto}</p>
+                            <span id="icona"><FontAwesomeIcon icon={faTrashCan} onClick={() => rimuoviPost(post.id)
                             } /></span>
-                            <br />
-                            <span>{post.available ? "Post certificato" : "Post da certificare"}</span>
+                            <span className={post.available ? "verify" : "notverify"} id="available">{post.available ? "Post certificato" : "Post da certificare"}</span>
                         </div>
                     ))}
                 </div>
             }
             <form onSubmit={manageSubmit}>
                 {/* valore categoria */}
-                <input
-                    name="categoria"
-                    type="text"
-                    value={formData.categoria}
-                    placeholder="Categoria post"
-                    onChange={manageFormData}
-                />
-                {/* valore titolo */}
-                <input
-                    name="titolo"
-                    type="text"
-                    value={formData.titolo}
-                    placeholder="Titolo post"
-                    onChange={manageFormData}
-                />
-                {/* valore autore */}
-                <input
-                    name="autore"
-                    type="text"
-                    value={formData.autore}
-                    placeholder="Autore post"
-                    onChange={manageFormData}
-                />
-                {/* valore contenuto */}
-                <textarea name="contenuto" value={formData.contenuto} onChange={manageFormData} placeholder="Contenuto post"></textarea>
-                {/* pubblicazione */}
-                <label htmlFor="available">Pubblicato</label>
-                <input type="checkbox"
-                    name="available"
-                    checked={formData.available}
-                    onChange={manageFormData}
-                    id="available" />
-                <button>
-                    Aggiungi Post
-                </button>
+                <div className="form_container">
+                    <h3>Aggiungi un nuovo post</h3>
+                    <input
+                        name="categoria"
+                        type="text"
+                        value={formData.categoria}
+                        placeholder="Categoria post"
+                        onChange={manageFormData}
+                        id="form_categoria"
+                    />
+                    {/* valore titolo */}
+                    <input
+                        name="titolo"
+                        type="text"
+                        value={formData.titolo}
+                        placeholder="Titolo post"
+                        onChange={manageFormData}
+                        id="form_titolo"
+                    />
+                    {/* valore autore */}
+                    <input
+                        name="autore"
+                        type="text"
+                        value={formData.autore}
+                        placeholder="Autore post"
+                        onChange={manageFormData}
+                        id="form_autore"
+                    />
+                    {/* valore contenuto */}
+                    <textarea name="contenuto" value={formData.contenuto} onChange={manageFormData} placeholder="Contenuto post" id="form_contenuto"
+                    ></textarea>
+                    {/* pubblicazione */}
+                    <div>
+                        <label className="label" htmlFor="available">Pubblicato</label>
+                        <input type="checkbox"
+                            name="available"
+                            checked={formData.available}
+                            onChange={manageFormData}
+                            id="available" />
+                    </div>
+                    <button>
+                        Aggiungi Post
+                    </button>
+                </div>
             </form>
         </>
     )
